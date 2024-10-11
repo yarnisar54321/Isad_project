@@ -1,93 +1,54 @@
-import MainSWM.NewJFrame;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 import decorClass.CircleButton;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class PromotionUI {
-    private CircleButton addButton;
     private JFrame promoFrame;
-    private JPanel promoPlate;
+    private JPanel promoPlate, textPlate, buttonPlate;
     private JScrollPane promoScroller;
     private JLabel promoText;
+    private CircleButton addButton;
     
     private PromotionUI(){
-        promoFrame = new JFrame();
-        promoPlate = new JPanel();
+        promoFrame = new JFrame("Promotion Manager");
+        promoPlate = new JPanel(new GridLayout(1, 5, 5, 0));
+        textPlate = new JPanel();
         promoScroller = new JScrollPane();
-        addButton = new CircleButton();
         promoText = new JLabel("Promotion");
+        buttonPlate = new JPanel();
+        addButton = new CircleButton();
         
-        promoFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        promoFrame.setVisible(true);
-        promoText.setFont(new Font("Comic Sans MS", 1, 24));
         addButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent event){
-                addButtonActionPerformed(event);
+            public void actionPerformed(ActionEvent e) {
+                
             }
-
-            private void addButtonActionPerformed(ActionEvent event) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
+            
         });
         
-        promoFrame.add(promoPlate);
-        promoFrame.pack();
+        promoFrame.setLayout(new BorderLayout());
+        promoText.setFont(new Font("Comic Sans MS", 1, 24));
+        addButton.setPreferredSize(new Dimension(50, 50));
         
-        javax.swing.GroupLayout promoPlateLayout = new javax.swing.GroupLayout(promoPlate);
-        promoPlate.setLayout(promoPlateLayout);
+        textPlate.add(promoText);
+        promoFrame.add(textPlate, BorderLayout.NORTH);
+        promoFrame.add(promoPlate, BorderLayout.CENTER);
+        promoFrame.add(buttonPlate, BorderLayout.SOUTH);
+        buttonPlate.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
-        promoPlateLayout.setHorizontalGroup(
-        promoPlateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(promoScroller)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, promoPlateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-            .addGroup(promoPlateLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-            .addComponent(promoText, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
-        );
+        buttonPlate.add(addButton);
         
-        promoPlateLayout.setVerticalGroup(
-        promoPlateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(promoPlateLayout.createSequentialGroup()
-                .addContainerGap()
-            .addComponent(promoText, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-            .addComponent(promoScroller, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-
+        promoFrame.setSize(1500, 800);
+        textPlate.setPreferredSize(new Dimension(200, 60));
+        buttonPlate.setBackground(new Color(50, 50, 100));
+        textPlate.setBackground(new Color(200, 220, 230));
+        promoFrame.setVisible(true);
+        promoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public static void main(String[] args) {
         new PromotionUI();
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
     }
-
 }
