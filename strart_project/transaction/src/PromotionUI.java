@@ -37,6 +37,9 @@ public class PromotionUI {
             }
         });
         
+        promoFrame.add(promoPlate);
+        promoFrame.pack();
+        
         javax.swing.GroupLayout promoPlateLayout = new javax.swing.GroupLayout(promoPlate);
         promoPlate.setLayout(promoPlateLayout);
         
