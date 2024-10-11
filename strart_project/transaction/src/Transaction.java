@@ -5,6 +5,7 @@ public class Transaction {
     private String itemName;
     private int quantity;
     private Date transactionDate;
+    private String transactionDetails;
     
     public void setTransactionID(int transactionID){
         this.transactionID = transactionID;
@@ -22,7 +23,7 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
     
-    public int getTransaction(){
+    public int getTransactionID(){
         return this.transactionID;
     }
     
@@ -39,7 +40,8 @@ public class Transaction {
     }
     
     public String getTransactionDetails(){
-        return "none";
+        transactionDetails = String.format("ID: %s, itemName: %s, quantity: %s, Date: %s", getTransactionID(), getItemName(), getQuantity(), getTransactionDate());
+        return transactionDetails;
     }
     public static void main(String[] args) {
         
