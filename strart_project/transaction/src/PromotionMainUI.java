@@ -4,14 +4,14 @@ import decorClass.CircleButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PromotionUI {
+public class PromotionMainUI {
     private JFrame promoFrame;
     private JPanel promoPlate, textPlate, buttonPlate;
     private JScrollPane promoScroller;
     private JLabel promoText;
     private CircleButton addButton;
     
-    private PromotionUI(){
+    private PromotionMainUI(){
         promoFrame = new JFrame("Promotion Manager");
         promoPlate = new JPanel(new GridLayout(1, 5, 5, 0));
         textPlate = new JPanel();
@@ -49,6 +49,6 @@ public class PromotionUI {
     }
     
     public static void main(String[] args) {
-        new PromotionUI();
+        new PromotionMainUI();
     }
 }
