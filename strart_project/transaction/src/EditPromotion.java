@@ -14,6 +14,9 @@ public class EditPromotion {
     private JTextArea describeText;
     private JButton cancleButton, doneButton;
     
+    private String promoName;
+    private String promoDetails;
+    
     private EditPromotion(){
         editFrame = new JFrame("promotion Editor");
         textPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
