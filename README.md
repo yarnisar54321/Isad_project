@@ -1,2 +1,0 @@
-# Isad_project
-ASMS
