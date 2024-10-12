@@ -67,7 +67,7 @@ public class CreatePromotion {
         detailPlate.add(fillDetail);
         
         createPromo.setLayout(new BorderLayout());
-        buttonBlog.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 7));
+        buttonBlog.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 7));
         createPromo.add(textPlate, BorderLayout.NORTH);
         createPromo.add(detailPlate, BorderLayout.CENTER);
         createPromo.add(buttonPlate, BorderLayout.SOUTH);
