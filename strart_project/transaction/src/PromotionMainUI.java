@@ -56,6 +56,8 @@ public class PromotionMainUI {
         buttonPlate.setPreferredSize(new Dimension(200, 60));
         buttonPlate.setBackground(new Color(50, 50, 100));
         textPlate.setBackground(new Color(200, 220, 230));
+        
+        promoFrame.setResizable(false);
         promoFrame.setVisible(true);
         promoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
