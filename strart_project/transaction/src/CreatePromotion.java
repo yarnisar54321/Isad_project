@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CreatePromotion {
     private JFrame createPromo;
@@ -26,6 +28,21 @@ public class CreatePromotion {
         namePromo = new JTextField("name");
         describePromo = new JTextArea("Description", 10, 40);
         
+        cancleB.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*event*/
+            }
+            
+        });
+        
+        doneB.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*event*/
+            }
+            
+        });
         
         GridBagConstraints gb = new GridBagConstraints();
         
