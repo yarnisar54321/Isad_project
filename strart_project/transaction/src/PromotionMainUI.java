@@ -9,7 +9,7 @@ public class PromotionMainUI {
     private JPanel promoPlate, textPlate, buttonPlate;
     private JScrollPane promoScroller;
     private JLabel promoText;
-    private CircleButton addButton;
+    private CircleButton addButton, deleteButton;
     
     private PromotionMainUI(){
         promoFrame = new JFrame("Promotion Manager");
@@ -19,6 +19,7 @@ public class PromotionMainUI {
         promoText = new JLabel("Promotion");
         buttonPlate = new JPanel();
         addButton = new CircleButton();
+        deleteButton = new CircleButton("-", 1000, 1000);
         
         addButton.addActionListener(new ActionListener(){
             @Override
@@ -28,9 +29,18 @@ public class PromotionMainUI {
             
         });
         
+        deleteButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /**/
+            }
+            
+        });
+        
         promoFrame.setLayout(new BorderLayout());
         promoText.setFont(new Font("Comic Sans MS", 1, 24));
         addButton.setPreferredSize(new Dimension(50, 50));
+        deleteButton.setPreferredSize(new Dimension(50, 50));
         
         textPlate.add(promoText);
         promoFrame.add(textPlate, BorderLayout.NORTH);
@@ -38,9 +48,10 @@ public class PromotionMainUI {
         promoFrame.add(buttonPlate, BorderLayout.SOUTH);
         buttonPlate.setLayout(new FlowLayout(FlowLayout.RIGHT));
         
+        buttonPlate.add(deleteButton);
         buttonPlate.add(addButton);
         
-        promoFrame.setSize(1500, 800);
+        promoFrame.setSize(750, 400);
         textPlate.setPreferredSize(new Dimension(200, 60));
         buttonPlate.setBackground(new Color(50, 50, 100));
         textPlate.setBackground(new Color(200, 220, 230));
