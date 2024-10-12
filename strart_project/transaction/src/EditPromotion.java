@@ -19,7 +19,6 @@ public class EditPromotion {
         buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         promoBlog = new JPanel();
         textBlog = new JPanel(new GridBagLayout());
-        buttonBlog = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         
         header = new JLabel("Edit");
         header.setFont(new Font("Comic Sans MS", 1, 24));
