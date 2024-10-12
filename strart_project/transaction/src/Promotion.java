@@ -3,6 +3,7 @@ import java.util.Date;
 
 public class Promotion {
     private int promotionID;
+    private String promotionType;
     private String promotionName;
     private double  discountRate;
     private Date startDate;
@@ -23,6 +24,9 @@ public class Promotion {
     public void setEndDate(Date endDate){
         this.endDate = endDate;
     }
+    public void setPromotion(String promotionType){
+        this.promotionType = promotionType;
+    }
     
     public int getPromotionID(){
         return this.promotionID;
@@ -38,5 +42,8 @@ public class Promotion {
     }
     public Date getEndDate(){
         return this.endDate;
+    }
+    public String getPromotion(){
+        return this.promotionType;
     }
 }
