@@ -1,85 +1,68 @@
-package javafxapplication1;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package javaapplication31;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+
 import java.io.Serializable;
 
 public class InventoryItem implements Serializable {
-    
-    private final SimpleStringProperty id;
-    private final SimpleStringProperty name;
-    private final SimpleIntegerProperty quantity;
-    private final SimpleStringProperty price;
-    private final SimpleStringProperty type;
+    private String id;
+    private String name;
+    private String price;
+    private String type;
+    private int quantity; 
 
-    // Constructor
-    public InventoryItem(String id, String name, int quantity, String price, String type) {
-        this.id = new SimpleStringProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.quantity = new SimpleIntegerProperty(quantity);
-        this.price = new SimpleStringProperty(price);
-        this.type = new SimpleStringProperty(type);
+    public InventoryItem(String id, String name, int quantity, String price, String type) { 
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.type = type;
     }
 
-    // Getters and Setters using JavaFX properties
+    InventoryItem() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getId() {
-        return id.get();
-    }
-
-    public void setId(String id) {
-        this.id.set(id);
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
-    public int getQuantity() {
-        return quantity.get();
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity.set(quantity);
-    }
-
-    public String getPrice() {
-        return price.get();
-    }
-
-    public void setPrice(String price) {
-        this.price.set(price);
-    }
-
-    public String getType() {
-        return type.get();
-    }
-
-    public void setType(String type) {
-        this.type.set(type);
-    }
-
-    // Property methods for binding
-    public SimpleStringProperty idProperty() {
         return id;
     }
 
-    public SimpleStringProperty nameProperty() {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public SimpleIntegerProperty quantityProperty() {
-        return quantity;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public SimpleStringProperty priceProperty() {
+    public String getPrice() {
         return price;
     }
 
-    public SimpleStringProperty typeProperty() {
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getQuantity() { 
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
