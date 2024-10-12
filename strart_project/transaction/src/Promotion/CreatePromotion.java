@@ -57,7 +57,7 @@ public class CreatePromotion {
         cancleB.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*event*/
+                createPromo.dispose();
             }
             
         });
