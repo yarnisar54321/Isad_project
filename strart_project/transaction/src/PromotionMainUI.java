@@ -39,20 +39,21 @@ public class PromotionMainUI {
         
         promoFrame.setLayout(new BorderLayout());
         promoText.setFont(new Font("Comic Sans MS", 1, 24));
-        addButton.setPreferredSize(new Dimension(50, 50));
-        deleteButton.setPreferredSize(new Dimension(50, 50));
+        addButton.setPreferredSize(new Dimension(45, 45));
+        deleteButton.setPreferredSize(new Dimension(45, 45));
         
         textPlate.add(promoText);
         promoFrame.add(textPlate, BorderLayout.NORTH);
         promoFrame.add(promoPlate, BorderLayout.CENTER);
         promoFrame.add(buttonPlate, BorderLayout.SOUTH);
-        buttonPlate.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttonPlate.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 7));
         
         buttonPlate.add(deleteButton);
         buttonPlate.add(addButton);
         
         promoFrame.setSize(750, 400);
         textPlate.setPreferredSize(new Dimension(200, 60));
+        buttonPlate.setPreferredSize(new Dimension(200, 60));
         buttonPlate.setBackground(new Color(50, 50, 100));
         textPlate.setBackground(new Color(200, 220, 230));
         promoFrame.setVisible(true);
