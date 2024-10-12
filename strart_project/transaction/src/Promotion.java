@@ -23,4 +23,20 @@ public class Promotion {
     public void setEndDate(Date endDate){
         this.endDate = endDate;
     }
+    
+    public int getPromotionID(){
+        return this.promotionID;
+    }
+    public String getPromotionName(){
+        return this.promotionName;
+    }
+    public double getDiscountRate(){
+        return this.discountRate;
+    }
+    public Date getStartDate(){
+        return this.startDate;
+    }
+    public Date getEndDate(){
+        return this.endDate;
+    }
 }
