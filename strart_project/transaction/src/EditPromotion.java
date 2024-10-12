@@ -101,6 +101,7 @@ public class EditPromotion {
         buttonPlate.add(cancleButton);
         buttonPlate.add(doneButton);
         
+        editFrame.setResizable(false);
         editFrame.setSize(750, 400);
         editFrame.setVisible(true);
         editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
