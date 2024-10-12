@@ -1,3 +1,5 @@
+package Promotion;
+
 import javax.swing.*;
 import java.awt.*;
 import decorClass.CircleButton;
