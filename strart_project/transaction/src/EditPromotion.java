@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditPromotion {
     private JFrame editFrame;
@@ -16,7 +18,7 @@ public class EditPromotion {
         editFrame = new JFrame("promotion Editor");
         textPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
         editPlate = new JPanel(new GridBagLayout());
-        buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 7));
         promoBlog = new JPanel();
         textBlog = new JPanel(new GridBagLayout());
         
@@ -27,6 +29,22 @@ public class EditPromotion {
         describeText = new JTextArea("description", 10, 30);
         cancleButton = new JButton("Cancle");
         doneButton = new JButton("Done");
+        
+        cancleButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*event*/
+            }
+            
+        });
+        
+        doneButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*event*/
+            }
+            
+        });
         
         editFrame.setLayout(new BorderLayout());
         editFrame.add(textPlate, BorderLayout.NORTH);
