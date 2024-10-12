@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class CreatePromotion {
     private JFrame createPromo;
-    private JPanel textPlate, detailPlate, buttonPlate, bGrid1, bGrid2, bGrid3, buttonBlog;
+    private JPanel textPlate, detailPlate, buttonPlate, buttonBlog;
     private JPanel fillDetail;
     private JButton cancleB, doneB;
     private JLabel header;
@@ -18,10 +18,7 @@ public class CreatePromotion {
         textPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
         detailPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
         fillDetail = new JPanel(new GridBagLayout());
-        buttonPlate = new JPanel(new GridLayout(1, 3));
-        bGrid1 = new JPanel();
-        bGrid2 = new JPanel();
-        bGrid3 = new JPanel();
+        buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonBlog = new JPanel();
         cancleB = new JButton("Cancle");
         doneB = new JButton("Done");
@@ -53,16 +50,13 @@ public class CreatePromotion {
         detailPlate.add(fillDetail);
         
         createPromo.setLayout(new BorderLayout());
-        buttonBlog.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 0));
+        buttonBlog.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 7));
         createPromo.add(textPlate, BorderLayout.NORTH);
         createPromo.add(detailPlate, BorderLayout.CENTER);
         createPromo.add(buttonPlate, BorderLayout.SOUTH);
-        buttonPlate.add(bGrid1);
-        buttonPlate.add(bGrid2);
-        buttonPlate.add(bGrid3);
         buttonBlog.add(cancleB);
         buttonBlog.add(doneB);
-        bGrid3.add(buttonBlog);
+        buttonPlate.add(buttonBlog);
         textPlate.add(header);
         
         header.setFont(new Font("Comic Sans MS", 1, 24));
