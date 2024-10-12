@@ -38,7 +38,7 @@ public class EditPromotion {
         cancleButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*event*/
+                editFrame.dispose();
             }
             
         });
