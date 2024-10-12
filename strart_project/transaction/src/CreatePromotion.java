@@ -78,7 +78,7 @@ public class CreatePromotion {
         
         header.setFont(new Font("Comic Sans MS", 1, 24));
         
-        
+        createPromo.setResizable(false);
         createPromo.setSize(750, 400);
         createPromo.setVisible(true);
         createPromo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
