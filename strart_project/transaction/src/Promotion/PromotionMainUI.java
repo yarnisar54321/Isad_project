@@ -7,8 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import decorClass.RoundedPanel;
 import Promotion.CreatePromotion;
+import Promotion.Promotion.PromotionListener;
 
-public class PromotionMainUI {
+public class PromotionMainUI implements PromotionListener{
     private JFrame promoFrame;
     private JPanel promoPlate, textPlate, buttonPlate;
     private JScrollPane promoScroller;
@@ -31,8 +32,7 @@ public class PromotionMainUI {
         addButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CreatePromotion();
-                
+                new CreatePromotion(PromotionMainUI.this);
             }
             
         });
@@ -75,26 +75,65 @@ public class PromotionMainUI {
         promoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void onPromotionCreated(String promoName, String promoDetail){
+    public void onPromotionCreated(Promotion promotion){
         RoundedPanel newProPlate = new RoundedPanel();
-                newProPlate.setPreferredSize(new Dimension(100, 200));
-                newProPlate.setBackground(new Color((int)(Math.random()* 0x1000000)));
+        newProPlate.setPreferredSize(new Dimension(250, 200));
+        newProPlate.setBackground(new Color((int)(Math.random()* 0x1000000)));
+        
+        JLabel idLabel = new JLabel("ID: " + promotion.getPromotionID());
+        JLabel typeLabel = new JLabel("Type: " + promotion.getPromotionType());
+        JLabel nameLabel = new JLabel("Name: " +  promotion.getPromotionName());
+        JLabel disRateLabel = new JLabel("Discount: " + promotion.getDiscountRate());
+        JLabel sDateLabel = new JLabel("Start Date: " + promotion.getStartDate());
+        JLabel eDateLabel = new JLabel("End Date: " + promotion.getEndDate());
+        
+        newProPlate.setLayout(new GridBagLayout());
+        
+        GridBagConstraints proCon = new GridBagConstraints();
+        proCon.gridx = 0;
+        proCon.gridy = 0;
+        proCon.gridheight = 1;
+        proCon.gridwidth = 1;
+        proCon.weightx = 1;
+        proCon.weighty = 0.5;
+        proCon.fill = GridBagConstraints.HORIZONTAL;
+        proCon.insets = new Insets(10, 10, 10, 10);
+        newProPlate.add(idLabel, proCon);
+        
+        proCon.gridy = 1;
+        newProPlate.add(typeLabel, proCon);
+        
+        proCon.gridy = 2;
+        newProPlate.add(nameLabel,proCon);
+        
+        proCon.gridy = 1;
+        proCon.gridx = 1;
+        newProPlate.add(disRateLabel,proCon);
+        
+        proCon.gridy = 4;
+        proCon.gridx = 0;
+        proCon.gridheight = 1;
+        proCon.gridwidth = 2;
+        newProPlate.add(sDateLabel,proCon);
+        
+        proCon.gridy = 5;
+        newProPlate.add(eDateLabel,proCon);
 
-                gbc.gridx = currentCol;
-                gbc.gridy = currentRow;
-                gbc.insets = new Insets(5, 15, 5, 0);
-                gbc.fill = GridBagConstraints.BOTH;
-                
-                promoPlate.add(newProPlate, gbc);
-                currentCol++;
-                
-                if (currentCol >= 6) {
-                    currentCol = 0;
-                    currentRow++;
-                }
-                
-                promoPlate.revalidate();
-                promoPlate.repaint();
+        gbc.gridx = currentCol;
+        gbc.gridy = currentRow;
+        gbc.insets = new Insets(5, 15, 5, 0);
+        gbc.fill = GridBagConstraints.BOTH;
+
+        promoPlate.add(newProPlate, gbc);
+        currentCol++;
+
+        if (currentCol >= 3) {
+            currentCol = 0;
+            currentRow++;
+        }
+
+        promoPlate.revalidate();
+        promoPlate.repaint();
     }
     
     public static void main(String[] args) {
