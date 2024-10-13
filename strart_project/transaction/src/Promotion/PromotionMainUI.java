@@ -83,7 +83,7 @@ public class PromotionMainUI implements PromotionListener{
         JLabel idLabel = new JLabel("ID: " + promotion.getPromotionID());
         JLabel typeLabel = new JLabel("Type: " + promotion.getPromotionType());
         JLabel nameLabel = new JLabel("Name: " +  promotion.getPromotionName());
-        JLabel disRateLabel = new JLabel("Discount: " + promotion.getDiscountRate());
+        JLabel disRateLabel = new JLabel("Discount: " + promotion.getDiscountRate() + " %");
         JLabel sDateLabel = new JLabel("Start Date: " + promotion.getStartDate());
         JLabel eDateLabel = new JLabel("End Date: " + promotion.getEndDate());
         
