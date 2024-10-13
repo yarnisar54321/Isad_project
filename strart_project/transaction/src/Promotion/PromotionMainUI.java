@@ -6,6 +6,7 @@ import decorClass.CircleButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import decorClass.RoundedPanel;
+import Promotion.CreatePromotion;
 
 public class PromotionMainUI {
     private JFrame promoFrame;
@@ -30,25 +31,7 @@ public class PromotionMainUI {
         addButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                RoundedPanel newProPlate = new RoundedPanel();
-                newProPlate.setPreferredSize(new Dimension(100, 200));
-                newProPlate.setBackground(new Color((int)(Math.random()* 0x1000000)));
-
-                gbc.gridx = currentCol;
-                gbc.gridy = currentRow;
-                gbc.insets = new Insets(5, 15, 5, 0);
-                gbc.fill = GridBagConstraints.BOTH;
-                
-                promoPlate.add(newProPlate, gbc);
-                currentCol++;
-                
-                if (currentCol >= 6) {
-                    currentCol = 0;
-                    currentRow++;
-                }
-                
-                promoPlate.revalidate();
-                promoPlate.repaint();
+                new CreatePromotion();
                 
             }
             
@@ -90,6 +73,28 @@ public class PromotionMainUI {
         promoFrame.setResizable(false);
         promoFrame.setVisible(true);
         promoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void onPromotionCreated(String promoName, String promoDetail){
+        RoundedPanel newProPlate = new RoundedPanel();
+                newProPlate.setPreferredSize(new Dimension(100, 200));
+                newProPlate.setBackground(new Color((int)(Math.random()* 0x1000000)));
+
+                gbc.gridx = currentCol;
+                gbc.gridy = currentRow;
+                gbc.insets = new Insets(5, 15, 5, 0);
+                gbc.fill = GridBagConstraints.BOTH;
+                
+                promoPlate.add(newProPlate, gbc);
+                currentCol++;
+                
+                if (currentCol >= 6) {
+                    currentCol = 0;
+                    currentRow++;
+                }
+                
+                promoPlate.revalidate();
+                promoPlate.repaint();
     }
     
     public static void main(String[] args) {
