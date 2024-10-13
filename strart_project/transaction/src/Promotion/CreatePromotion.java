@@ -5,16 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Promotion.PromoPlate;
+import Promotion.Promotion.PromotionListener;
 import decorClass.RoundedPanel;
+import java.util.Date;
+import Promotion.DateUtils;
 
 
-public class CreatePromotion {
+public class CreatePromotion{
     private JFrame createPromo;
     private JPanel textPlate, detailPlate, buttonPlate, buttonBlog;
     private JButton cancleB, doneB;
     private JLabel header;
     private JTextField namePromo;
     private JTextArea describePromo;
+    private PromotionListener promotionListener;
     
     private RoundedPanel detailsPlate;
     private RoundedPanel imagePlate, blank1, blank2;
@@ -28,7 +32,9 @@ public class CreatePromotion {
     private String promoName;
     private String promoDetails;
     
-    private CreatePromotion(){
+    CreatePromotion(PromotionListener listener){
+        this.promotionListener = listener;
+        
         createPromo = new JFrame("Create new Promotion");
         textPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
         detailPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -51,7 +57,7 @@ public class CreatePromotion {
         typeField = new JTextField("type", 10);
         idField = new JTextField("ID", 10);
         toText = new JLabel("to");
-        disOpt = new String[]{"5%", "10%", "15%", "20%", "25%","30%", "35%", "40%", "45%", "50%","55%", "60%", "65%", "70%", "75%", "80%"};
+        disOpt = new String[]{"5", "10", "15", "20", "25","30", "35", "40", "45", "50","55", "60", "65", "70", "75", "80"};
         disRate = new JComboBox<>(disOpt);
         
         cancleB.addActionListener(new ActionListener(){
@@ -64,7 +70,21 @@ public class CreatePromotion {
         doneB.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*event*/
+                String promoName = namePromo.getText();
+                String promoDetails = describePromo.getText();
+                double discountRate  = Double.parseDouble((String) disRate.getSelectedItem());
+                String promotionType = typeField.getText();
+                Date startDate = DateUtils.parseDate(sDateField.getText());
+                Date endDate = DateUtils.parseDate(eDateField.getText());
+                int promotionID = Integer.parseInt(idField.getText());
+                
+                Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, discountRate, startDate, endDate);
+                
+                if (promotionListener != null) {
+                    promotionListener.onPromotionCreated(newPromotion);
+                }
+                
+                createPromo.dispose();
             }
             
         });
@@ -154,10 +174,10 @@ public class CreatePromotion {
         createPromo.setResizable(false);
         createPromo.setSize(750, 400);
         createPromo.setVisible(true);
-        createPromo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createPromo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public static void main(String[] args) {
-        new CreatePromotion();
-    }
+//    public static void main(String[] args) {
+//        new CreatePromotion();
+//    }
 }
