@@ -78,7 +78,7 @@ public class PromotionMainUI implements PromotionListener{
     public void onPromotionCreated(Promotion promotion){
         RoundedPanel newProPlate = new RoundedPanel();
         newProPlate.setPreferredSize(new Dimension(250, 200));
-        newProPlate.setBackground(new Color((int)(Math.random()* 0x1000000)));
+        newProPlate.setBackground(new Color(220, 230, 250));
         
         JLabel idLabel = new JLabel("ID: " + promotion.getPromotionID());
         JLabel typeLabel = new JLabel("Type: " + promotion.getPromotionType());

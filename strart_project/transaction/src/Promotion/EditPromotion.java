@@ -4,112 +4,180 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Promotion.PromoPlate;
+import Promotion.Promotion.PromotionListener;
+import decorClass.RoundedPanel;
+import java.util.Date;
+import Promotion.DateUtils;
 
-public class EditPromotion {
-    private JFrame editFrame;
-    private JPanel textPlate, editPlate, buttonPlate;
-    private JPanel promoBlog, textBlog;
-    private JPanel buttonBlog;
-    
+
+public class EditPromotion{
+    private JFrame createPromo;
+    private JPanel textPlate, detailPlate, buttonPlate, buttonBlog;
+    private JButton cancleB, doneB;
     private JLabel header;
-    private JTextField nameField;
-    private JTextArea describeText;
-    private JButton cancleButton, doneButton;
+    private JTextField namePromo;
+    private JTextArea describePromo;
+    private PromotionListener promotionListener;
+    
+    private RoundedPanel detailsPlate;
+    private RoundedPanel imagePlate, blank1, blank2;
+    private JTextField nameField, sDateField, eDateField, typeField, idField;
+    private JTextArea description;
+    private JComboBox disRate;
+    private JLabel toText;
+    private String[] disOpt;
+
     
     private String promoName;
     private String promoDetails;
     
-    private EditPromotion(){
-        editFrame = new JFrame("promotion Editor");
+    EditPromotion(){
+//        this.promotionListener = listener;
+        
+        createPromo = new JFrame("Promotion Editor");
         textPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        editPlate = new JPanel(new GridBagLayout());
-        buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 7));
-        promoBlog = new JPanel();
-        textBlog = new JPanel(new GridBagLayout());
+        detailPlate = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPlate = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonBlog = new JPanel();
+        cancleB = new JButton("Cancle");
+        doneB = new JButton("Done");
+        header = new JLabel("Edit Promotion");
+        namePromo = new JTextField("name");
+        describePromo = new JTextArea("Description", 10, 40);
         
-        header = new JLabel("Edit");
-        header.setFont(new Font("Comic Sans MS", 1, 24));
+        detailsPlate = new RoundedPanel(20, 20, new GridBagLayout());
+        imagePlate = new RoundedPanel(20, 20, new GridBagLayout());
+        blank1 = new RoundedPanel(20, 20);
+        blank2 = new RoundedPanel(20, 20);
+        nameField = new JTextField("name", 10);
+        sDateField = new JTextField("start date (xxxx-xx-xx)");
+        eDateField = new JTextField("end date (xxxx-xx-xx)");
+        description = new JTextArea("description", 3, 1);
+        typeField = new JTextField("type", 10);
+        idField = new JTextField("ID", 10);
+        toText = new JLabel("to");
+        disOpt = new String[]{"5", "10", "15", "20", "25","30", "35", "40", "45", "50","55", "60", "65", "70", "75", "80"};
+        disRate = new JComboBox<>(disOpt);
         
-        nameField = new JTextField("name");
-        describeText = new JTextArea("description", 10, 30);
-        cancleButton = new JButton("Cancle");
-        doneButton = new JButton("Done");
-        
-        cancleButton.addActionListener(new ActionListener(){
+        cancleB.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                editFrame.dispose();
+                createPromo.dispose();
+            }
+            
+        });
+        doneB.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                String promoName = namePromo.getText();
+//                String promoDetails = describePromo.getText();
+//                double discountRate  = Double.parseDouble((String) disRate.getSelectedItem());
+//                String promotionType = typeField.getText();
+//                Date startDate = DateUtils.parseDate(sDateField.getText());
+//                Date endDate = DateUtils.parseDate(eDateField.getText());
+//                int promotionID = Integer.parseInt(idField.getText());
+//                
+//                Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, discountRate, startDate, endDate);
+//                
+//                if (promotionListener != null) {
+//                    promotionListener.onPromotionCreated(newPromotion);
+//                }
+//                
+//                createPromo.dispose();
             }
             
         });
         
-        doneButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                /*event*/
-            }
-            
-        });
+        GridBagConstraints gb = new GridBagConstraints();
+        gb.gridx = 1;
+        gb.gridy = 0;
+        gb.weightx = 0.4;
+        gb.weighty = 0.4;
+        gb.gridheight = 1;
+        gb.gridwidth = 1;
+        gb.fill = GridBagConstraints.BOTH;
+        gb.insets = new Insets(5, 5, 5, 5);
+        detailsPlate.add(imagePlate, gb);
         
-        editFrame.setLayout(new BorderLayout());
-        editFrame.add(textPlate, BorderLayout.NORTH);
-        editFrame.add(editPlate, BorderLayout.CENTER);
-        editFrame.add(buttonPlate, BorderLayout.SOUTH);
+        gb.gridx = 0;
+        gb.gridy = 0;
+        gb.weightx = 0.4;
+        gb.fill = GridBagConstraints.HORIZONTAL;
+        gb.insets = new Insets(5, 10, 5, 15);
+        detailsPlate.add(idField, gb);
         
+        gb.gridx = 0;
+        gb.gridy = 1;
+        gb.weightx = 1;
+        gb.weighty = 0.4;
+        gb.gridwidth = 2;
+        gb.gridheight = 1;
+        gb.fill = GridBagConstraints.BOTH;
+        gb.insets = new Insets(10, 5, 10, 5);
+        detailsPlate.add(description, gb);
+        
+        gb.gridx = 0;
+        gb.gridy = 2;
+        gb.weighty = 0.2;
+        detailsPlate.add(disRate, gb);
+        
+        GridBagConstraints gb_head = new GridBagConstraints();
+        gb_head.gridx = 0;
+        gb_head.gridy = 0;
+        gb_head.weightx = 1;
+        gb_head.weighty = 1;
+        gb_head.gridheight = 1;
+        gb_head.gridwidth = 1;
+        gb_head.fill = GridBagConstraints.HORIZONTAL;
+        gb_head.insets = new Insets(5, 5, 5, 5);
+        imagePlate.add(nameField, gb_head);
+        
+        gb_head.gridx = 0;
+        gb_head.gridy = 1;
+        imagePlate.add(typeField, gb_head);
+        
+        gb_head.gridx = 0;
+        gb_head.gridy = 2;
+        imagePlate.add(sDateField, gb_head);
+        
+        gb_head.gridx = 0;
+        gb_head.gridy = 3;
+        gb_head.fill = GridBagConstraints.VERTICAL;
+        gb_head.insets = new Insets(0, 0, 0, 0);
+        imagePlate.add(blank1, gb_head);
+        blank1.add(toText);
+        
+        gb_head.gridx = 0;
+        gb_head.gridy = 4;
+        gb_head.fill = GridBagConstraints.HORIZONTAL;
+        gb_head.insets = new Insets(5, 5, 5, 5);
+        imagePlate.add(eDateField, gb_head);
+        
+        detailsPlate.setBackground(new Color(200, 150, 150));
+        imagePlate.setBackground(new Color(230, 200, 200));
+        blank1.setBackground(new Color(255, 230, 230));
+
+        detailPlate.add(detailsPlate);
+        createPromo.setLayout(new BorderLayout());
+        buttonBlog.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 0));
+        createPromo.add(textPlate, BorderLayout.NORTH);
+        createPromo.add(detailPlate, BorderLayout.CENTER);
+        createPromo.add(buttonPlate, BorderLayout.SOUTH);
+        buttonBlog.add(cancleB);
+        buttonBlog.add(doneB);
+        buttonPlate.add(buttonBlog);
         textPlate.add(header);
         
-        GridBagConstraints gb_plate = new GridBagConstraints();
-        gb_plate.gridx = 0;
-        gb_plate.gridy = 0;
-        gb_plate.gridheight = 1;
-        gb_plate.gridwidth = 1;
-        gb_plate.weightx = 0.6;
-        gb_plate.weighty = 1;
-        gb_plate.fill = GridBagConstraints.BOTH;
-        gb_plate.insets = new Insets(20, 10, 10, 10);
-        editPlate.add(promoBlog, gb_plate);
+        header.setFont(new Font("Comic Sans MS", 1, 24));
         
-        promoBlog.setBackground(new Color(250, 210, 208));
-        
-        gb_plate.gridx = 1;
-        gb_plate.gridy = 0;
-        gb_plate.gridwidth = 1;
-        gb_plate.weightx = 0.4;
-        gb_plate.weighty = 1;
-        gb_plate.fill = GridBagConstraints.BOTH;
-        gb_plate.insets = new Insets(20, 10, 10, 10);
-        editPlate.add(textBlog, gb_plate);
-        
-        GridBagConstraints gb_txt = new GridBagConstraints();
-        
-        gb_txt.gridx = 0;
-        gb_txt.gridy = 0;
-        gb_txt.gridheight = 1;
-        gb_txt.gridwidth = 3;
-        gb_txt.weightx = 1;
-        gb_txt.weighty = 0.1;
-        gb_txt.fill = GridBagConstraints.HORIZONTAL;
-        gb_txt.insets = new Insets(10, 10, 10, 10);
-        textBlog.add(nameField, gb_txt);
-        
-        gb_txt.gridx = 0;
-        gb_txt.gridy = 1;
-        gb_txt.gridheight = 2;
-        gb_txt.weightx = 1;
-        gb_txt.weighty = 1;
-        gb_txt.insets = new Insets(10, 10, 10, 10);
-        textBlog.add(new JScrollPane(describeText), gb_txt);
-        
-        buttonPlate.add(cancleButton);
-        buttonPlate.add(doneButton);
-        
-        editFrame.setResizable(false);
-        editFrame.setSize(750, 400);
-        editFrame.setVisible(true);
-        editFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createPromo.setResizable(false);
+        createPromo.setSize(750, 400);
+        createPromo.setVisible(true);
+        createPromo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-    public static void main(String[] args) {
-        new EditPromotion();
-    }
+//    public static void main(String[] args) {
+//        new EditPromotion();
+//    }
 }
