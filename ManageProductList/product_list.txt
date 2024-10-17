@@ -1,0 +1,18 @@
+Product ID: 091
+Product Name: KFC
+Product Price: 30.00
+Product Description: Kentucky fried chicken
+-------------------------
+
+Product ID: 092
+Product Name: Kitkat
+Product Price: 155.00
+Product Description: Wafer chocolate
+-------------------------
+
+Product ID: 093
+Product Name: Lays Original
+Product Price: 32.00
+Product Description: Potato chips
+-------------------------
+
