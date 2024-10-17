@@ -1,0 +1,9 @@
+1.Open MySQL Workbench and connect to the MySQL server.
+2.Select File → Run SQL Script from the menu.
+3.Browse and select the .sql file.
+4.Choose the target database and click Start to import the script.
+
+username = root
+password = 2245
+Dump20241017.sql
+database = inv
