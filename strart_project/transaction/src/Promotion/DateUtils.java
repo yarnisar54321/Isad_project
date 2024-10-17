@@ -2,6 +2,8 @@ package Promotion;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class DateUtils {
@@ -13,5 +15,10 @@ public class DateUtils {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public static String formatDate(LocalDate date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return formatter.format(date);
     }
 }

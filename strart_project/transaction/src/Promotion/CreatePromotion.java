@@ -9,15 +9,15 @@ import Promotion.Promotion.PromotionListener;
 import decorClass.RoundedPanel;
 import java.util.Date;
 import Promotion.DateUtils;
-
+import java.awt.event.*;
+import java.io.*;
+import java.time.LocalDate;
 
 public class CreatePromotion{
     private JFrame createPromo;
     private JPanel textPlate, detailPlate, buttonPlate, buttonBlog;
     private JButton cancleB, doneB;
     private JLabel header;
-    private JTextField namePromo;
-    private JTextArea describePromo;
     private PromotionListener promotionListener;
     
     private RoundedPanel detailsPlate;
@@ -26,7 +26,8 @@ public class CreatePromotion{
     private JTextArea description;
     private JComboBox disRate;
     private JLabel toText;
-    private String[] disOpt;
+    private Double[] disOpt;
+    private LocalDate dateToday;
 
     
     private String promoName;
@@ -43,21 +44,20 @@ public class CreatePromotion{
         cancleB = new JButton("Cancle");
         doneB = new JButton("Done");
         header = new JLabel("Create Promotion");
-        namePromo = new JTextField("name");
-        describePromo = new JTextArea("Description", 10, 40);
+        dateToday = LocalDate.now();
         
         detailsPlate = new RoundedPanel(20, 20, new GridBagLayout());
         imagePlate = new RoundedPanel(20, 20, new GridBagLayout());
         blank1 = new RoundedPanel(20, 20);
         blank2 = new RoundedPanel(20, 20);
         nameField = new JTextField("name", 10);
-        sDateField = new JTextField("start date (xxxx-xx-xx)");
+        sDateField = new JTextField(DateUtils.formatDate(dateToday));
         eDateField = new JTextField("end date (xxxx-xx-xx)");
         description = new JTextArea("description", 3, 1);
         typeField = new JTextField("type", 10);
         idField = new JTextField("ID", 10);
         toText = new JLabel("to");
-        disOpt = new String[]{"5", "10", "15", "20", "25","30", "35", "40", "45", "50","55", "60", "65", "70", "75", "80"};
+        disOpt = new Double[]{5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0, 75.0, 80.0};
         disRate = new JComboBox<>(disOpt);
         
         cancleB.addActionListener(new ActionListener(){
@@ -65,28 +65,90 @@ public class CreatePromotion{
             public void actionPerformed(ActionEvent e) {
                 createPromo.dispose();
             }
-            
         });
-        doneB.addActionListener(new ActionListener(){
+        
+        doneB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String promoName = namePromo.getText();
-                String promoDetails = describePromo.getText();
-                double discountRate  = Double.parseDouble((String) disRate.getSelectedItem());
-                String promotionType = typeField.getText();
-                Date startDate = DateUtils.parseDate(sDateField.getText());
-                Date endDate = DateUtils.parseDate(eDateField.getText());
-                int promotionID = Integer.parseInt(idField.getText());
-                
-                Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, discountRate, startDate, endDate);
-                
-                if (promotionListener != null) {
-                    promotionListener.onPromotionCreated(newPromotion);
+                try {
+                    String promoName = nameField.getText();
+                    String promoDetails = description.getText();
+                    double discountRate = (double) disRate.getSelectedItem();
+                    String promotionType = typeField.getText();
+                    Date startDate = DateUtils.parseDate(sDateField.getText());
+                    Date endDate = DateUtils.parseDate(eDateField.getText());
+                    int promotionID = Integer.parseInt(idField.getText());
+                    
+                    Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, discountRate, startDate, endDate);
+
+
+                    String fileName = "Promo_EndDate_" + eDateField.getText() + ".txt";
+
+                    if (!isIDExistInFile(fileName, promotionID)) {
+
+                        try (FileWriter writer = new FileWriter(fileName, true)) {
+                            writer.write("Promotion ID: " + promotionID + "\n");
+                            writer.write("Name: " + promoName + "\n");
+                            writer.write("Type: " + promotionType + "\n");
+                            writer.write("Discount Rate: " + discountRate + "%\n");
+                            writer.write("Start Date: " + sDateField.getText() + "\n");
+                            writer.write("End Date: " + eDateField.getText() + "\n");
+                            writer.write("Description: " + promoDetails + "\n\n");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+
+
+                        if (promotionListener != null) {
+                            promotionListener.onPromotionCreated(newPromotion);
+                        }
+
+                        createPromo.dispose();
+                    } else {
+
+                        JOptionPane.showMessageDialog(createPromo, "Promotion ID already exists in the file.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-                
-                createPromo.dispose();
             }
-            
+        });
+        
+        idField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                idField.selectAll();
+            }
+        });
+        nameField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                nameField.selectAll();
+            }
+        });
+        sDateField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                sDateField.selectAll();
+            }
+        });
+        eDateField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                eDateField.selectAll();
+            }
+        });
+        typeField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                typeField.selectAll();
+            }
+        });
+        description.addFocusListener(new FocusAdapter(){
+            @Override
+            public void focusGained(FocusEvent e) {
+                description.selectAll();
+            }
         });
         
         GridBagConstraints gb = new GridBagConstraints();
@@ -177,7 +239,17 @@ public class CreatePromotion{
         createPromo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-//    public static void main(String[] args) {
-//        new CreatePromotion();
-//    }
+    private boolean isIDExistInFile(String fileName, int promotionID) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("Promotion ID: " + promotionID)) {
+                    return true; 
+                }
+            }
+        } catch (IOException e) {
+
+        }
+        return false; 
+    }
 }
