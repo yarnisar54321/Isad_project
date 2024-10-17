@@ -4,6 +4,8 @@
  */
 package ViewSaleAnalysis;
 
+import java.awt.Color;
+
 /**
  *
  * @author Admin
@@ -15,6 +17,8 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
      */
     public SaleReportGUIplan() {
         initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -25,7 +29,6 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         SScontainer = new javax.swing.JPanel();
         searchPanel = new javax.swing.JPanel();
@@ -47,19 +50,24 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
+        SScontainer.setOpaque(false);
         SScontainer.setLayout(new java.awt.BorderLayout());
 
         searchPanel.setBackground(new java.awt.Color(204, 204, 204));
+        searchPanel.setOpaque(false);
         searchPanel.setLayout(new java.awt.GridLayout(2, 1));
 
+        enterdatePanel.setOpaque(false);
         enterdatePanel.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("enter dd/mm/yyyy for specific sale reports");
         enterdatePanel.add(jLabel2);
+
+        jPanel1.setOpaque(false);
 
         startDate.setText("start date");
         jPanel1.add(startDate);
@@ -87,13 +95,18 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
 
         searchPanel.add(enterdatePanel);
 
+        displayButtonPanel.setOpaque(false);
         displayButtonPanel.setPreferredSize(new java.awt.Dimension(452, 22));
         displayButtonPanel.setLayout(new java.awt.GridLayout(2, 1));
+
+        confirmBPanel.setOpaque(false);
 
         jButton2.setText("confirm");
         confirmBPanel.add(jButton2);
 
         displayButtonPanel.add(confirmBPanel);
+
+        displayAllBPanel1.setOpaque(false);
 
         jButton3.setText("display all sale reports");
         displayAllBPanel1.add(jButton3);
@@ -104,6 +117,8 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
 
         SScontainer.add(searchPanel, java.awt.BorderLayout.CENTER);
 
+        topicPanel.setOpaque(false);
+
         jLabel1.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sale Reports");
@@ -111,6 +126,7 @@ public class SaleReportGUIplan extends javax.swing.JFrame {
 
         SScontainer.add(topicPanel, java.awt.BorderLayout.PAGE_START);
 
+        bestSellerPanel.setOpaque(false);
         bestSellerPanel.setLayout(new java.awt.BorderLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/ViewSaleAnalysis/SaleAnalyticGUIplan.java</file>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/testDatabase/dbConnect.java</file>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/ViewSaleAnalysis/SaleReportGUIplan.java</file>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/testDatabase/datConvertToDB.java</file>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/decorClass/RoundedPanel.java</file>
+            <file>file:/C:/Users/Admin/Desktop/ISAD/SaleAnalysisBoundary/src/decorClass/RoundedButton.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ViewSaleAnalysis;
-
+import decorClass.*;
+import java.awt.Color;
 /**
  *
  * @author Admin
@@ -15,6 +16,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
      */
     public SaleAnalyticGUIplan() {
         initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,7 +32,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         SScontainer = new javax.swing.JPanel();
         SaleSumPanel = new javax.swing.JPanel();
-        daily = new javax.swing.JPanel();
+        daily = new RoundedPanel(50,50);
         incomePanel = new javax.swing.JPanel();
         incomeDisplay = new javax.swing.JLabel();
         BahtPanel = new javax.swing.JPanel();
@@ -40,7 +43,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         bahtLabel1 = new javax.swing.JLabel();
         dailyLpanel = new javax.swing.JPanel();
         bahtLabel2 = new javax.swing.JLabel();
-        weekly = new javax.swing.JPanel();
+        weekly = new RoundedPanel(50,50);
         incomePanel2 = new javax.swing.JPanel();
         incomeDisplay2 = new javax.swing.JLabel();
         BahtPanel2 = new javax.swing.JPanel();
@@ -51,7 +54,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         bahtLabel4 = new javax.swing.JLabel();
         weeklyLpanel = new javax.swing.JPanel();
         bahtLabel5 = new javax.swing.JLabel();
-        montly = new javax.swing.JPanel();
+        montly = new RoundedPanel(50,50);
         incomePanel4 = new javax.swing.JPanel();
         incomeDisplay4 = new javax.swing.JLabel();
         BahtPanel4 = new javax.swing.JPanel();
@@ -75,15 +78,19 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(0, 0, 0));
+        setLocationByPlatform(true);
 
+        SScontainer.setOpaque(false);
         SScontainer.setLayout(new java.awt.BorderLayout());
 
         SaleSumPanel.setBackground(new java.awt.Color(204, 204, 204));
+        SaleSumPanel.setOpaque(false);
 
-        daily.setBackground(new java.awt.Color(204, 204, 255));
+        daily.setBackground(new java.awt.Color(209, 252, 225));
         daily.setLayout(new java.awt.GridBagLayout());
 
+        incomePanel.setOpaque(false);
         incomePanel.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -94,6 +101,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         incomePanel.add(incomeDisplay, gridBagConstraints);
+
+        BahtPanel.setOpaque(false);
 
         bahtLabel.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         bahtLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -110,6 +119,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         daily.add(incomePanel, gridBagConstraints);
 
+        incomePanel1.setOpaque(false);
         incomePanel1.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay1.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -151,9 +161,10 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         daily.add(dailyLpanel, gridBagConstraints);
 
-        weekly.setBackground(new java.awt.Color(204, 204, 255));
+        weekly.setBackground(new java.awt.Color(209, 241, 252));
         weekly.setLayout(new java.awt.GridBagLayout());
 
+        incomePanel2.setOpaque(false);
         incomePanel2.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay2.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -164,6 +175,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         incomePanel2.add(incomeDisplay2, gridBagConstraints);
+
+        BahtPanel2.setOpaque(false);
 
         bahtLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         bahtLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -180,6 +193,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         weekly.add(incomePanel2, gridBagConstraints);
 
+        incomePanel3.setOpaque(false);
         incomePanel3.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay3.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -190,6 +204,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         incomePanel3.add(incomeDisplay3, gridBagConstraints);
+
+        BahtPanel3.setOpaque(false);
 
         bahtLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         bahtLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -219,9 +235,10 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         weekly.add(weeklyLpanel, gridBagConstraints);
 
-        montly.setBackground(new java.awt.Color(204, 204, 255));
+        montly.setBackground(new java.awt.Color(212, 209, 252));
         montly.setLayout(new java.awt.GridBagLayout());
 
+        incomePanel4.setOpaque(false);
         incomePanel4.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay4.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -232,6 +249,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         incomePanel4.add(incomeDisplay4, gridBagConstraints);
+
+        BahtPanel4.setOpaque(false);
 
         bahtLabel6.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         bahtLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -248,6 +267,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         montly.add(incomePanel4, gridBagConstraints);
 
+        incomePanel5.setOpaque(false);
         incomePanel5.setLayout(new java.awt.GridBagLayout());
 
         incomeDisplay5.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -258,6 +278,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
         incomePanel5.add(incomeDisplay5, gridBagConstraints);
+
+        BahtPanel5.setOpaque(false);
 
         bahtLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         bahtLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -312,6 +334,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         SScontainer.add(SaleSumPanel, java.awt.BorderLayout.CENTER);
 
+        topicPanel.setOpaque(false);
+
         jLabel1.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sale Summary");
@@ -319,6 +343,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         SScontainer.add(topicPanel, java.awt.BorderLayout.PAGE_START);
 
+        topicPanel1.setOpaque(false);
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
         flowLayout1.setAlignOnBaseline(true);
         topicPanel1.setLayout(flowLayout1);
@@ -326,6 +351,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         jButton1.setText("View Graph");
         topicPanel1.add(jButton1);
 
+        bestSellerPanel.setOpaque(false);
         bestSellerPanel.setLayout(new java.awt.BorderLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -343,6 +369,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         bestSellerPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        topicPanel2.setOpaque(false);
         java.awt.FlowLayout flowLayout4 = new java.awt.FlowLayout();
         flowLayout4.setAlignOnBaseline(true);
         topicPanel2.setLayout(flowLayout4);
@@ -356,6 +383,8 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
         topicPanel2.add(jButton2);
 
         bestSellerPanel.add(topicPanel2, java.awt.BorderLayout.PAGE_END);
+
+        topicPanel3.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
