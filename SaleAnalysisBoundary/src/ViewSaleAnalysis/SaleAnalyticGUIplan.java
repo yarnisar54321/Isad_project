@@ -10,11 +10,12 @@ import java.awt.Color;
  * @author Admin
  */
 public class SaleAnalyticGUIplan extends javax.swing.JFrame {
-
+    SaleAnalytic anl;
     /**
      * Creates new form SaleAnalyticGUI
      */
     public SaleAnalyticGUIplan() {
+        anl = new SaleAnalytic();
         initComponents();
         getContentPane().setBackground(Color.WHITE);
         setLocationRelativeTo(null);
@@ -95,7 +96,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay.setText("XXXX.XX");
+        incomeDisplay.setText(String.valueOf(anl.getDailySum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -124,7 +125,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay1.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay1.setText("XX");
+        incomeDisplay1.setText(String.valueOf(anl.getDailyOrderNum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -169,7 +170,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay2.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay2.setText("XXXX.XX");
+        incomeDisplay2.setText(String.valueOf(anl.getWeeklySum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -198,7 +199,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay3.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay3.setText("XX");
+        incomeDisplay3.setText(String.valueOf(anl.getDailyOrderNum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -243,7 +244,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay4.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay4.setText("XXXX.XX");
+        incomeDisplay4.setText(String.valueOf(anl.getMonthlySum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -272,7 +273,7 @@ public class SaleAnalyticGUIplan extends javax.swing.JFrame {
 
         incomeDisplay5.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
         incomeDisplay5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        incomeDisplay5.setText("XX");
+        incomeDisplay5.setText(String.valueOf(anl.getMonthlyOrderNum()));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
