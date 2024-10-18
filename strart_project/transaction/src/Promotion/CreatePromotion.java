@@ -218,50 +218,38 @@ public class CreatePromotion{
             String promoDetails = description.getText();
             double discountRate = (double) disRate.getSelectedItem();
             String promotionType = typeField.getText();
-            Date startDate = DateUtils.parseDate(sDateField.getText());
-            Date endDate = DateUtils.parseDate(eDateField.getText());
+            LocalDate startDate = LocalDate.parse(sDateField.getText());
+            LocalDate endDate = LocalDate.parse(eDateField.getText());
             int promotionID = Integer.parseInt(idField.getText());
 
-            Promotion newPromotion = new Promotion(promotionID, promotionType, promoDetails, promoName, discountRate, startDate, endDate);
+            Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, promoDetails, discountRate, startDate, endDate);
 
+            File promoFile = new File("Promotion.txt");
 
-            String fileName = "Promo_EndDate_" + eDateField.getText() + ".txt";
-
-            if (!isIDExistInFile(fileName, promotionID)) {
-                File promotionDir = new File("promotionData");
-                if (!promotionDir.exists()) {
-                    promotionDir.mkdirs(); //create folder
-                }
-                File promoFile = new File(promotionDir, fileName);
-                try (FileWriter writer = new FileWriter(promoFile, true)) {
-                    if (promoFile.exists()) {
-                        writer.write("\n[NEXT PROMO]"); //for read text easily, for me...
-                    }
-                    writer.write("Promotion ID: " + promotionID + "\n");
-                    writer.write("Name: " + promoName + "\n");
-                    writer.write("Type: " + promotionType + "\n");
-                    writer.write("Discount Rate: " + discountRate + "%\n");
-                    writer.write("Start Date: " + sDateField.getText() + "\n");
-                    writer.write("End Date: " + eDateField.getText() + "\n");
-                    writer.write("Description: " + promoDetails);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-
-                if (promotionListener != null) {
-                    promotionListener.onPromotionCreated(newPromotion);
-                }
-
-                createPromo.dispose();
-            } else {
-
-                JOptionPane.showMessageDialog(createPromo, "Promotion ID already exists in the file.", "Error", JOptionPane.ERROR_MESSAGE);
+            try (FileWriter writer = new FileWriter(promoFile, true)) {
+                // Write the promotion details
+                writer.write("Promotion ID: " + promotionID + "\n");
+                writer.write("Name: " + promoName + "\n");
+                writer.write("Type: " + promotionType + "\n");
+                writer.write("Discount Rate: " + discountRate + "%\n");
+                writer.write("Start Date: " + startDate + "\n");
+                writer.write("End Date: " + endDate + "\n");
+                writer.write("Description: " + promoDetails + "\n");
+                writer.write("\n"); // Add a newline after each promotion for better readability
             }
+
+            if (promotionListener != null) {
+                promotionListener.onPromotionCreated(newPromotion);
+            }
+
+            createPromo.dispose();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
+
+
     private void loadPromotionFiles() {
         //no folder no data ja
         File promotionDir = new File("promotionData");
@@ -310,13 +298,12 @@ public class CreatePromotion{
                             promotionListener.onPromotionCreated(promotion);
                         }
 
-                        // Skip the empty line between promotions (if it exists)
                         reader.readLine();
                     }
                 }
 
             } catch (Exception ex) {
-                ex.printStackTrace(); // Handle any parsing or IO errors
+                ex.printStackTrace();
             }
         }
     }
