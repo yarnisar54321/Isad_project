@@ -86,101 +86,60 @@ public class PromotionMainUI implements PromotionListener{
     }
 
     private void loadPromotionFiles() {
-        //no folder no data ja
-        File promotionDir = new File("promotionData");
-        if (!promotionDir.exists() || !promotionDir.isDirectory()) {
-            System.out.println("no folder found");
+        File promoFile = new File("Promotion.txt");
+
+        if (!promoFile.exists() || !promoFile.isFile()) {
+            System.out.println("file not found.");
             return;
         }
 
-        File[] files = promotionDir.listFiles((dir, name) -> name.startsWith("Promo_EndDate_") && name.endsWith(".txt"));
-        if (files == null) return;
+        try (BufferedReader reader = new BufferedReader(new FileReader(promoFile))) {
+            String line;
 
-        for (File file : files) {
-            try {
-                //get date from file name, 4 = ".txt"
-                String fileName = file.getName();
-                String dateString = fileName.substring("Promo_EndDate_".length(), fileName.length() - 4);
-                LocalDate fileEndDate = LocalDate.parse(dateString);
-
-                if (fileEndDate.isBefore(dateToday)) {
-                    file.delete();
-                    System.out.println("file deleted");
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
                     continue;
                 }
 
-                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        if (line.trim().isEmpty()) {
-                            continue;
-                        }
-
-                        try {
-                            String[] promotionIdParts = line.split(": ");
-                            if (promotionIdParts.length < 2) {
-                                System.err.println("Invalid line format: " + line);
-                            }
-                            int promotionID = Integer.parseInt(promotionIdParts[1].trim());
-
-                            String promotionName = reader.readLine();
-                            String promotionType = reader.readLine();
-                            String discountRateLine = reader.readLine();
-                            String startDateLine = reader.readLine();
-                            String endDateLine = reader.readLine();
-                            String promoDetailsLine = reader.readLine();
-
-                            if (promotionName == null || promotionType == null || discountRateLine == null || startDateLine == null || endDateLine == null || promoDetailsLine == null) {
-                                System.err.println("Missing details");
-                                continue;
-                            }
-
-                            String[] promotionNameParts = promotionName.split(": ");
-                            String[] promotionTypeParts = promotionType.split(": ");
-                            String[] discountRateParts = discountRateLine.split(": ");
-                            String[] startDateParts = startDateLine.split(": ");
-                            String[] endDateParts = endDateLine.split(": ");
-                            String[] promoDetailsParts = promoDetailsLine.split(": ");
-
-                            if (promotionNameParts.length < 2 || promotionTypeParts.length < 2 ||
-                                    discountRateParts.length < 2 || startDateParts.length < 2 ||
-                                    endDateParts.length < 2 || promoDetailsParts.length < 2) {
-                                System.err.println("Invalid line format");
-                                continue;
-                            }
-
-                            String promotionNameValue = promotionNameParts[1].trim();
-                            String promotionTypeValue = promotionTypeParts[1].trim();
-                            double discountRate = Double.parseDouble(discountRateParts[1].replace("%", "").trim());
-                            LocalDate startDate = LocalDate.parse(startDateParts[1].trim());
-                            LocalDate endDate = LocalDate.parse(endDateParts[1].trim());
-                            String promoDetails = promoDetailsParts[1].trim();
-
-                            System.out.println(promotionID);
-                            System.out.println(promotionTypeValue);
-                            System.out.println(promotionNameValue);
-                            System.out.println(promoDetails);
-                            System.out.println(discountRate);
-                            System.out.println(startDate);
-                            System.out.println(endDate);
-                            Promotion promotion = new Promotion(promotionID, promotionTypeValue, promotionNameValue, promoDetails, discountRate, startDate, endDate);
-                            onPromotionCreated(promotion);
-                        } catch (IOException | NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+                try {
+                    String[] promotionIdParts = line.split(": ");
+                    if (promotionIdParts.length < 2) {
+                        System.err.println("Invalid line format: " + line);
+                        continue;
                     }
-                } catch (IOException e) {
+                    int promotionID = Integer.parseInt(promotionIdParts[1].trim());
+
+                    String promotionName = reader.readLine();
+                    String promotionType = reader.readLine();
+                    String discountRateLine = reader.readLine();
+                    String startDateLine = reader.readLine();
+                    String endDateLine = reader.readLine();
+                    String promoDetailsLine = reader.readLine();
+
+                    if (promotionName == null || promotionType == null || discountRateLine == null ||
+                            startDateLine == null || endDateLine == null || promoDetailsLine == null) {
+                        System.err.println("Missing details for promotion ID: " + promotionID);
+                        continue;
+                    }
+
+                    String promotionNameValue = promotionName.split(": ")[1].trim();
+                    String promotionTypeValue = promotionType.split(": ")[1].trim();
+                    double discountRate = Double.parseDouble(discountRateLine.split(": ")[1].replace("%", "").trim());
+                    LocalDate startDate = LocalDate.parse(startDateLine.split(": ")[1].trim());
+                    LocalDate endDate = LocalDate.parse(endDateLine.split(": ")[1].trim());
+                    String promoDetails = promoDetailsLine.split(": ")[1].trim();
+
+                    Promotion promotion = new Promotion(promotionID, promotionTypeValue, promotionNameValue, promoDetails, discountRate, startDate, endDate);
+                    onPromotionCreated(promotion);
+                } catch (IOException | NumberFormatException e) {
                     e.printStackTrace();
                 }
-
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     public void onPromotionCreated(Promotion promotion){
         RoundedPanel newProPlate = new RoundedPanel();
