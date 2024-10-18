@@ -1,5 +1,3 @@
-package Promotion;
-
 import java.util.Date;
 
 public class Transaction {
