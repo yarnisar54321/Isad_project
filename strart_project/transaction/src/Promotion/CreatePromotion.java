@@ -52,14 +52,14 @@ public class CreatePromotion{
         blank2 = new RoundedPanel(20, 20);
         nameField = new JTextField("name", 10);
         sDateField = new JTextField(DateUtils.formatDate(dateToday));
-        eDateField = new JTextField("end date (xxxx-xx-xx)");
+        eDateField = new JTextField("end date (yyyy-mm-dd)");
         description = new JTextArea("description", 3, 1);
         typeField = new JTextField("type", 10);
         idField = new JTextField("ID", 10);
         toText = new JLabel("to");
         disOpt = new Double[]{5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0, 75.0, 80.0};
         disRate = new JComboBox<>(disOpt);
-        
+
         cancleB.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,47 +70,7 @@ public class CreatePromotion{
         doneB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    String promoName = nameField.getText();
-                    String promoDetails = description.getText();
-                    double discountRate = (double) disRate.getSelectedItem();
-                    String promotionType = typeField.getText();
-                    Date startDate = DateUtils.parseDate(sDateField.getText());
-                    Date endDate = DateUtils.parseDate(eDateField.getText());
-                    int promotionID = Integer.parseInt(idField.getText());
-                    
-                    Promotion newPromotion = new Promotion(promotionID, promotionType, promoName, discountRate, startDate, endDate);
-
-
-                    String fileName = "Promo_EndDate_" + eDateField.getText() + ".txt";
-
-                    if (!isIDExistInFile(fileName, promotionID)) {
-
-                        try (FileWriter writer = new FileWriter(fileName, true)) {
-                            writer.write("Promotion ID: " + promotionID + "\n");
-                            writer.write("Name: " + promoName + "\n");
-                            writer.write("Type: " + promotionType + "\n");
-                            writer.write("Discount Rate: " + discountRate + "%\n");
-                            writer.write("Start Date: " + sDateField.getText() + "\n");
-                            writer.write("End Date: " + eDateField.getText() + "\n");
-                            writer.write("Description: " + promoDetails + "\n\n");
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-
-
-                        if (promotionListener != null) {
-                            promotionListener.onPromotionCreated(newPromotion);
-                        }
-
-                        createPromo.dispose();
-                    } else {
-
-                        JOptionPane.showMessageDialog(createPromo, "Promotion ID already exists in the file.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                savePromotionToFile();
             }
         });
         
@@ -248,8 +208,117 @@ public class CreatePromotion{
                 }
             }
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
         return false; 
     }
+    private void savePromotionToFile() {
+        try {
+            String promoName = nameField.getText();
+            String promoDetails = description.getText();
+            double discountRate = (double) disRate.getSelectedItem();
+            String promotionType = typeField.getText();
+            Date startDate = DateUtils.parseDate(sDateField.getText());
+            Date endDate = DateUtils.parseDate(eDateField.getText());
+            int promotionID = Integer.parseInt(idField.getText());
+
+            Promotion newPromotion = new Promotion(promotionID, promotionType, promoDetails, promoName, discountRate, startDate, endDate);
+
+
+            String fileName = "Promo_EndDate_" + eDateField.getText() + ".txt";
+
+            if (!isIDExistInFile(fileName, promotionID)) {
+                File promotionDir = new File("promotionData");
+                if (!promotionDir.exists()) {
+                    promotionDir.mkdirs(); //create folder
+                }
+                File promoFile = new File(promotionDir, fileName);
+                try (FileWriter writer = new FileWriter(promoFile, true)) {
+                    if (promoFile.exists()) {
+                        writer.write("\n[NEXT PROMO]"); //for read text easily, for me...
+                    }
+                    writer.write("Promotion ID: " + promotionID + "\n");
+                    writer.write("Name: " + promoName + "\n");
+                    writer.write("Type: " + promotionType + "\n");
+                    writer.write("Discount Rate: " + discountRate + "%\n");
+                    writer.write("Start Date: " + sDateField.getText() + "\n");
+                    writer.write("End Date: " + eDateField.getText() + "\n");
+                    writer.write("Description: " + promoDetails);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+
+                if (promotionListener != null) {
+                    promotionListener.onPromotionCreated(newPromotion);
+                }
+
+                createPromo.dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(createPromo, "Promotion ID already exists in the file.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    private void loadPromotionFiles() {
+        //no folder no data ja
+        File promotionDir = new File("promotionData");
+        if (!promotionDir.exists() || !promotionDir.isDirectory()) {
+            System.out.println("no folder found");
+            return;
+        }
+
+        File[] files = promotionDir.listFiles((dir, name) -> name.startsWith("Promo_EndDate_") && name.endsWith(".txt"));
+        if (files == null) return;
+
+        for (File file : files) {
+            try {
+                //get date from file name, 4 = ".txt"
+                String fileName = file.getName();
+                String dateString = fileName.substring("Promo_EndDate_".length(), fileName.length() - 4);
+                LocalDate fileEndDate = LocalDate.parse(dateString);
+
+                if (fileEndDate.isBefore(dateToday)) {
+                    file.delete();
+                    System.out.println("file deleted");
+                    continue;
+                }
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        line = line.trim();
+                        if (line.isEmpty()) {
+                            continue;
+                        }
+                        if (line.startsWith("[NEXT PROMO]")) {
+                            continue;
+                        }
+
+                        int promotionID = Integer.parseInt(reader.readLine().split(": ")[1].trim());
+                        String promotionName = reader.readLine().split(": ")[1].trim();
+                        String promotionType = reader.readLine().split(": ")[1].trim();
+                        double discountRate = Double.parseDouble(reader.readLine().split(": ")[1].replace("%", "").trim());
+                        LocalDate startDate = LocalDate.parse(reader.readLine().split(": ")[1].trim());
+                        LocalDate endDate = LocalDate.parse(reader.readLine().split(": ")[1].trim());
+                        String promoDetails = reader.readLine().split(": ")[1].trim();
+
+                        Promotion promotion = new Promotion(promotionID, promotionType, promotionName, promoDetails, discountRate, startDate, endDate);
+                        if (promotionListener != null) {
+                            promotionListener.onPromotionCreated(promotion);
+                        }
+
+                        // Skip the empty line between promotions (if it exists)
+                        reader.readLine();
+                    }
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace(); // Handle any parsing or IO errors
+            }
+        }
+    }
+
 }

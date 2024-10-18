@@ -1,5 +1,6 @@
 package Promotion;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Promotion {
@@ -11,7 +12,7 @@ public class Promotion {
     private Date startDate;
     private Date endDate;
     
-    public Promotion(int promotonID, String promotionType, String promotionName, double discountrate, Date startDate, Date endDate){
+    public Promotion(int promotonID, String promotionType, String promotionName, String description, double discountrate, Date startDate, Date endDate){
         this.promotionID = promotonID;
         this.promotionType = promotionType;
         this.promotionName = promotionName;
@@ -19,7 +20,11 @@ public class Promotion {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-    
+
+    public Promotion(int promotionID, String promotionType, String promotionName, String promoDetails, double discountRate, LocalDate startDate, LocalDate endDate) {
+
+    }
+
     public interface PromotionListener{
         void onPromotionCreated(Promotion newPromotion);
     }
@@ -42,7 +47,7 @@ public class Promotion {
     public void setPromotionType(String promotionType){
         this.promotionType = promotionType;
     }
-    
+
     public int getPromotionID(){
         return this.promotionID;
     }
@@ -61,4 +66,12 @@ public class Promotion {
     public String getPromotionType(){
         return this.promotionType;
     }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
