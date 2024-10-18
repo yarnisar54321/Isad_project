@@ -7,8 +7,8 @@ import decorClass.*;
 public class MainGUI {
     private JFrame mainFrame;
     private JPanel mainPlate;
-    private Icon imgProfile, imgCeckOut, imgAccount, imgPromotion, imgStock, imgList, imgFlag;
-    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank2, blank3, blank4, blank5, blank6, blank7, blank8;
+    private ImageIcon imgProfile, imgCeckOut, imgAccount, imgPromotion, imgStock, imgList, imgFlag;
+    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank3, blank4, blank5, blank6, blank7, blank8;
     private RoundedPanel leftUpper, leftUnder, rightUpper, rightUnder;
     private RoundedPanel profilePalte, checkOutPlate, accountPlate, promotionPlate, stockPlate, listPlate, flagPlate;
     private JLabel nameLabel;
@@ -25,14 +25,11 @@ public class MainGUI {
         leftPlate = new RoundedPanel(new BorderLayout(10, 10));
         rightPlate = new RoundedPanel(new GridBagLayout());
         
-//        //import image
-//        imgProfile = new Icon
-        
         //component for left panel
         leftUpper = new RoundedPanel(new GridBagLayout());
         leftUnder = new RoundedPanel(new GridBagLayout());
         blank1 = new RoundedPanel();
-        blank2 = new RoundedPanel();
+        checkOutPlate = new RoundedPanel(new GridBagLayout());
         blank3 = new RoundedPanel();
         blank4 = new RoundedPanel();
         blank5 = new RoundedPanel();
@@ -56,6 +53,14 @@ public class MainGUI {
         stockPlate = new RoundedPanel();
         listPlate = new RoundedPanel();
         flagPlate = new RoundedPanel();
+        checkOutBttn = new RoundedButton("Checkout", 20, 20);
+        accountBttn = new RoundedButton("Account", 20, 20);
+        promotionBttn = new RoundedButton("promotion", 20, 20);
+        stockBttn = new RoundedButton("Stock", 20, 20);
+        listBttn = new RoundedButton("Product List", 20, 20);
+        
+        //import image
+        imgFlag = new ImageIcon(getClass().getResource("/Main/mainIcon/flag.png"));
         
         //place component in frame
         GridBagConstraints gbMain = new GridBagConstraints();
@@ -177,7 +182,7 @@ public class MainGUI {
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
         gbRightT.insets = new Insets(7, 7, 2, 7);
-        rightUpper.add(blank2, gbRightT);
+        rightUpper.add(checkOutPlate, gbRightT);
         
         gbRightT.gridx = 1;
         gbRightT.gridy = 0;
@@ -252,12 +257,15 @@ public class MainGUI {
         gbRightB.insets = new Insets(5, 5, 5, 5);
         rightUnder.add(flagPlate, gbRightB);
         
+        //place image
+        GridBagConstraints checkoutGB = new GridBagConstraints();
+        
         //set color or other attribute in frame
         nameBG.setPreferredSize(new Dimension(50, 7));
         profilePalte.setPreferredSize(new Dimension(50, 50));
         profilePalte.setBackground(new Color(180, 130, 120));
         blank1.setBackground(new Color(200, 150, 140));
-        blank2.setBackground(new Color(140, 150, 200));
+        checkOutPlate.setBackground(new Color(255, 230, 230));
         blank3.setBackground(new Color(140, 150, 200));
         blank4.setBackground(new Color(140, 150, 200));
         blank5.setBackground(new Color(140, 150, 200));
