@@ -8,7 +8,7 @@ public class MainGUI {
     private JFrame mainFrame;
     private JPanel mainPlate;
     private Icon imgProfile, imgCeckOut, imgAccount, imgPromotion, imgStock, imgList, imgFlag;
-    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank2, blank3, blank4, blank5, blank6, blank7;
+    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank2, blank3, blank4, blank5, blank6, blank7, blank8;
     private RoundedPanel leftUpper, leftUnder, rightUpper, rightUnder;
     private RoundedPanel profilePalte, checkOutPlate, accountPlate, promotionPlate, stockPlate, listPlate, flagPlate;
     private JLabel nameLabel;
@@ -33,6 +33,7 @@ public class MainGUI {
         blank5 = new RoundedPanel();
         blank6 = new RoundedPanel();
         blank7 = new RoundedPanel();
+        blank8 = new RoundedPanel();
         profilePalte = new RoundedPanel(1000, 1000);
         nameBG = new RoundedPanel(new FlowLayout(FlowLayout.LEFT,15, 5));
         nameLabel = new JLabel("Name: ");
