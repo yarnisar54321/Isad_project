@@ -20,9 +20,14 @@ public class MainGUI {
         //main frame attribute
         mainFrame = new JFrame("Main");
         mainPlate = new JPanel(new GridBagLayout());
+        
         //plate for left and right element
         leftPlate = new RoundedPanel(new BorderLayout(10, 10));
         rightPlate = new RoundedPanel(new GridBagLayout());
+        
+//        //import image
+//        imgProfile = new Icon
+        
         //component for left panel
         leftUpper = new RoundedPanel(new GridBagLayout());
         leftUnder = new RoundedPanel(new GridBagLayout());
@@ -41,9 +46,10 @@ public class MainGUI {
         scrollSold = new JScrollPane();
         soldArea = new JTextArea();
         logOutBttn = new RoundedButton();
+        
         //component for right panel
         rightUpper = new RoundedPanel(new GridBagLayout());
-        rightUnder = new RoundedPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightUnder = new RoundedPanel(new GridBagLayout());
         checkOutPlate = new RoundedPanel();
         accountPlate = new RoundedPanel();
         promotionPlate = new RoundedPanel();
@@ -145,7 +151,7 @@ public class MainGUI {
         gbRight.gridheight = 1;
         gbRight.gridwidth = 1;
         gbRight.weightx = 1;
-        gbRight.weighty = 0.9;
+        gbRight.weighty = 0.75;
         gbRight.fill = GridBagConstraints.BOTH;
         gbRight.insets = new Insets(5, 5, 1, 5);
         rightPlate.add(rightUpper, gbRight);
@@ -155,7 +161,7 @@ public class MainGUI {
         gbRight.gridheight = 1;
         gbRight.gridwidth = 1;
         gbRight.weightx = 1;
-        gbRight.weighty = 0.1;
+        gbRight.weighty = 0.25;
         gbRight.fill = GridBagConstraints.BOTH;
         gbRight.insets = new Insets(5, 5, 5, 5);
         rightPlate.add(rightUnder, gbRight);
@@ -170,7 +176,7 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(10, 5, 10, 5);
+        gbRightT.insets = new Insets(7, 7, 2, 7);
         rightUpper.add(blank2, gbRightT);
         
         gbRightT.gridx = 1;
@@ -180,7 +186,7 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(10, 5, 5, 5);
+        gbRightT.insets = new Insets(7, 7, 2, 7);
         rightUpper.add(blank3, gbRightT);
         
         gbRightT.gridx = 2;
@@ -190,7 +196,7 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(10, 5, 5, 5);
+        gbRightT.insets = new Insets(7, 7, 2, 7);
         rightUpper.add(blank4, gbRightT);
         
         gbRightT.gridx = 0;
@@ -200,7 +206,7 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(0, 5, 5, 5);
+        gbRightT.insets = new Insets(7, 7, 7, 7);
         rightUpper.add(blank5, gbRightT);
         
         gbRightT.gridx = 1;
@@ -210,7 +216,7 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(0, 5, 5, 5);
+        gbRightT.insets = new Insets(7, 7, 7, 7);
         rightUpper.add(blank6, gbRightT);
         
         gbRightT.gridx = 2;
@@ -220,27 +226,47 @@ public class MainGUI {
         gbRightT.weightx = 1;
         gbRightT.weighty = 1;
         gbRightT.fill = GridBagConstraints.BOTH;
-        gbRightT.insets = new Insets(0, 5, 5, 5);
+        gbRightT.insets = new Insets(7, 7, 7, 7);
         rightUpper.add(blank7, gbRightT);
         
         //set bottom right
-        rightUnder.add(flagPlate);
-
+        GridBagConstraints gbRightB = new GridBagConstraints();
+        
+        gbRightB.gridx = 0;
+        gbRightB.gridy = 0;
+        gbRightB.gridheight = 1;
+        gbRightB.gridwidth = 1;
+        gbRightB.weightx = 0.8;
+        gbRightB.weighty = 1;
+        gbRightB.fill = GridBagConstraints.BOTH;
+        gbRightB.insets = new Insets(5, 5, 5, 5);
+        rightUnder.add(blank8, gbRightB);
+        
+        gbRightB.gridx = 1;
+        gbRightB.gridy = 0;
+        gbRightB.gridheight = 1;
+        gbRightB.gridwidth = 1;
+        gbRightB.weightx = 0.2;
+        gbRightB.weighty = 1;
+        gbRightB.fill = GridBagConstraints.BOTH;
+        gbRightB.insets = new Insets(5, 5, 5, 5);
+        rightUnder.add(flagPlate, gbRightB);
         
         //set color or other attribute in frame
         nameBG.setPreferredSize(new Dimension(50, 7));
         profilePalte.setPreferredSize(new Dimension(50, 50));
         profilePalte.setBackground(new Color(180, 130, 120));
-        blank1.setBackground(new Color(140, 150, 200));
+        blank1.setBackground(new Color(200, 150, 140));
         blank2.setBackground(new Color(140, 150, 200));
         blank3.setBackground(new Color(140, 150, 200));
         blank4.setBackground(new Color(140, 150, 200));
         blank5.setBackground(new Color(140, 150, 200));
         blank6.setBackground(new Color(140, 150, 200));
-        blank7.setBackground(new Color(140, 150, 200));
+        blank7.setBackground(new Color(200, 150, 140));
+        blank8.setBackground(new Color(200, 150, 140));
 
         flagPlate.setBackground(new Color(140, 150, 200));
-        flagPlate.setPreferredSize(new Dimension(120, 120));
+//        flagPlate.setPreferredSize(new Dimension(120, 120));
         
         nameLabel.setFont(new Font("Comic Sans MS", 1, 14));
         nameBG.setBackground(new Color(180, 130, 120));
