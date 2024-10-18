@@ -1,4 +1,3 @@
-package javaapplication21;
 
 import java.util.*;
 import java.io.*;
@@ -29,7 +28,7 @@ public class ManageProductListBoundary extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
 
         // ชื่อคอลัมน์ของตาราง
-        String[] columnNames = {"Product ID", "Product Name", "Price", "Description"};
+        String[] columnNames = {"Product ID", "Product Name", "distributor", "Description"};
 
         // ข้อมูลสินค้า (สามารถแก้ไขตามต้องการ)
         data = new ArrayList<>();
@@ -79,7 +78,7 @@ public class ManageProductListBoundary extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JTextField productIdField = new JTextField(10);
                 JTextField productNameField = new JTextField(10);
-                JTextField priceField = new JTextField(10);
+                JTextField distributorField = new JTextField(10);
                 JTextField DescriptionField = new JTextField(20);
                 
                 JPanel panel = new JPanel();
@@ -91,8 +90,8 @@ public class ManageProductListBoundary extends JFrame {
                 panel.add(new JLabel("Product Name:"));
                 panel.add(productNameField);
                 panel.add(Box.createVerticalStrut(10)); // distance
-                panel.add(new JLabel("Price:"));
-                panel.add(priceField);
+                panel.add(new JLabel("distributor:"));
+                panel.add(distributorField);
                 panel.add(Box.createVerticalStrut(10)); // distacne
                 panel.add(new JLabel("Description:"));
                 panel.add(DescriptionField);
@@ -101,9 +100,9 @@ public class ManageProductListBoundary extends JFrame {
                 if (result == JOptionPane.OK_OPTION) {
                     String productId = productIdField.getText();
                     String productName = productNameField.getText();
-                    String price = priceField.getText();
+                    String distributor = distributorField.getText();
                     String Description = DescriptionField.getText();
-                    Object[] newRow = {productId, productName, price, Description};
+                    Object[] newRow = {productId, productName, distributor, Description};
                     data.add(newRow);
                     model.addRow(newRow);
 
@@ -129,7 +128,7 @@ public class ManageProductListBoundary extends JFrame {
                 if (selectedRow != -1) {
                     JTextField productIdField = new JTextField(10);
                     JTextField productNameField = new JTextField(10);
-                    JTextField priceField = new JTextField(10);
+                    JTextField distributorField = new JTextField(10);
                     JTextField DescriptionField = new JTextField(20);
 
                     JPanel panel = new JPanel();
@@ -146,11 +145,11 @@ public class ManageProductListBoundary extends JFrame {
                     productNameField.setText(cellValue);
                     panel.add(productNameField);
                     panel.add(Box.createVerticalStrut(10)); // distance
-                    
-                    panel.add(new JLabel("Price:"));
+
+                    panel.add(new JLabel("distributor:"));
                     cellValue = model.getValueAt(selectedRow, 2).toString();
-                    priceField.setText(cellValue);
-                    panel.add(priceField);
+                    distributorField.setText(cellValue);
+                    panel.add(distributorField);
                     panel.add(Box.createVerticalStrut(10)); // distacne
                     
                     panel.add(new JLabel("Description:"));
@@ -162,11 +161,11 @@ public class ManageProductListBoundary extends JFrame {
                     if (result == JOptionPane.OK_OPTION) {
                         String productId = productIdField.getText();
                         String productName = productNameField.getText();
-                        String price = priceField.getText();
+                        String distributor = distributorField.getText();
                         String Description = DescriptionField.getText();
                         model.setValueAt(productId, selectedRow, 0);
                         model.setValueAt(productName, selectedRow, 1);
-                        model.setValueAt(price, selectedRow, 2);
+                        model.setValueAt(distributor, selectedRow, 2);
                         model.setValueAt(Description, selectedRow, 3);
                         
                         System.out.print(data.size());
@@ -260,7 +259,7 @@ public class ManageProductListBoundary extends JFrame {
 //                writer.newLine();
                 writer.write("Product ID: " + row[0] + "\n");
                 writer.write("Product Name: " + row[1] + "\n");
-                writer.write("Product Price: " + row[2] + "\n");
+                writer.write("Product distributor: " + row[2] + "\n");
                 writer.write("Product Description: " + row[3] + "\n");
                 writer.write("-------------------------\n");
                 writer.newLine(); 
