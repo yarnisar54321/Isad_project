@@ -30,11 +30,11 @@ public class MainGUI {
         leftUpper = new RoundedPanel(new GridBagLayout());
         leftUnder = new RoundedPanel(new GridBagLayout());
         blank1 = new RoundedPanel();
-        blank2 = new RoundedPanel(new GridBagLayout());
-        blank3 = new RoundedPanel(new GridBagLayout());
-        blank4 = new RoundedPanel(new GridBagLayout());
-        blank5 = new RoundedPanel(new GridBagLayout());
-        blank6 = new RoundedPanel(new GridBagLayout());
+        blank2 = new RoundedPanel();
+        blank3 = new RoundedPanel();
+        blank4 = new RoundedPanel();
+        blank5 = new RoundedPanel();
+        blank6 = new RoundedPanel();
         blank7 = new RoundedPanel();
         blank8 = new RoundedPanel();
         profilePalte = new RoundedPanel(1000, 1000);
