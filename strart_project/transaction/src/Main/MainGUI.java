@@ -171,7 +171,7 @@ public class MainGUI {
         gbRight.weightx = 1;
         gbRight.weighty = 0.75;
         gbRight.fill = GridBagConstraints.BOTH;
-        gbRight.insets = new Insets(5, 5, 1, 5);
+        gbRight.insets = new Insets(5, 5, 0, 5);
         rightPlate.add(rightUpper, gbRight);
         
         gbRight.gridx = 0;
@@ -181,7 +181,7 @@ public class MainGUI {
         gbRight.weightx = 1;
         gbRight.weighty = 0.25;
         gbRight.fill = GridBagConstraints.BOTH;
-        gbRight.insets = new Insets(5, 5, 5, 5);
+        gbRight.insets = new Insets(0, 5, 5, 5);
         rightPlate.add(rightUnder, gbRight);
         
         //set top right
@@ -402,14 +402,14 @@ public class MainGUI {
         nameBG.setPreferredSize(new Dimension(50, 7));
         profilePalte.setPreferredSize(new Dimension(50, 50));
         profilePalte.setBackground(new Color(180, 130, 120));
-        blank1.setBackground(new Color(200, 150, 140));
+        blank1.setBackground(new Color(220, 170, 160));
         checkOutPlate.setBackground(new Color(200, 150, 140));
         accountPlate.setBackground(new Color(200, 150, 140));
         promotionPlate.setBackground(new Color(200, 150, 140));
         stockPlate.setBackground(new Color(200, 150, 140));
         listPlate.setBackground(new Color(200, 150, 140));
-        blank7.setBackground(new Color(200, 150, 140));
-        blank8.setBackground(new Color(200, 150, 140));
+        blank7.setBackground(new Color(220, 170, 160));
+        blank8.setBackground(new Color(220, 170, 160));
         
         checkOutPlate.setPreferredSize(new Dimension(30, 70));
         accountPlate.setPreferredSize(new Dimension(30, 70));
@@ -417,7 +417,7 @@ public class MainGUI {
         stockPlate.setPreferredSize(new Dimension(30, 70));
         listPlate.setPreferredSize(new Dimension(30, 70));
 
-        flagPlate.setBackground(new Color(200, 150, 140));
+        flagPlate.setBackground(new Color(220, 170, 160));
         flagPlate.setPreferredSize(new Dimension(20, 30));
         
         nameLabel.setFont(new Font("Comic Sans MS", 1, 14));
@@ -438,15 +438,15 @@ public class MainGUI {
         logOutBttn.setText("Log out");
         logOutBttn.setFont(new Font("Comic Sans MS", 1, 14));
         
-        leftUpper.setBackground(new Color(200, 150, 140));
+        leftUpper.setBackground(new Color(220, 170, 160));
         leftUpper.setPreferredSize(new Dimension(50, 170));
-        leftUnder.setBackground(new Color(200, 150, 140));
+        leftUnder.setBackground(new Color(220, 170, 160));
         leftUnder.setPreferredSize(new Dimension(50, 200));
         leftPlate.setBackground(new Color(220, 170, 160));
         rightPlate.setBackground(new Color(220, 170, 160));
         
-        rightUpper.setBackground(new Color(200, 150, 140));
-        rightUnder.setBackground(new Color(200, 150, 140));
+        rightUpper.setBackground(new Color(220, 170, 160));
+        rightUnder.setBackground(new Color(220, 170, 160));
         
         //set frame
         mainFrame.add(mainPlate);
