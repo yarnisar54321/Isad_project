@@ -9,20 +9,19 @@ public class Promotion {
     private String promotionName;
     private String description;
     private double  discountRate;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     
-    public Promotion(int promotonID, String promotionType, String promotionName, String description, double discountrate, Date startDate, Date endDate){
-        this.promotionID = promotonID;
-        this.promotionType = promotionType;
-        this.promotionName = promotionName;
-        this.discountRate = discountrate;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Promotion(int promotionID, String promotionType, String promotionName, String description, double discountRate, Date startDate, Date endDate){
     }
 
     public Promotion(int promotionID, String promotionType, String promotionName, String promoDetails, double discountRate, LocalDate startDate, LocalDate endDate) {
-
+        this.promotionID = promotionID;
+        this.promotionType = promotionType;
+        this.promotionName = promotionName;
+        this.discountRate = discountRate;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public interface PromotionListener{
@@ -38,10 +37,10 @@ public class Promotion {
     public void setDiscountRate(double discountRate){
         this.discountRate = discountRate;
     }
-    public void setStartDate(Date startDate){
+    public void setStartDate(LocalDate startDate){
         this.startDate = startDate;
     }
-    public void setEndDate(Date endDate){
+    public void setEndDate(LocalDate endDate){
         this.endDate = endDate;
     }
     public void setPromotionType(String promotionType){
@@ -57,10 +56,10 @@ public class Promotion {
     public double getDiscountRate(){
         return this.discountRate;
     }
-    public Date getStartDate(){
+    public LocalDate getStartDate(){
         return this.startDate;
     }
-    public Date getEndDate(){
+    public LocalDate getEndDate(){
         return this.endDate;
     }
     public String getPromotionType(){

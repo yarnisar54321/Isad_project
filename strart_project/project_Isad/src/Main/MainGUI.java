@@ -1,8 +1,13 @@
 package Main;
 
+import Promotion.*;
 import java.awt.*;
 import javax.swing.*;
 import decorClass.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainGUI {
     private JFrame mainFrame;
@@ -29,6 +34,7 @@ public class MainGUI {
         //component for left panel
         leftUpper = new RoundedPanel(new GridBagLayout());
         leftUnder = new RoundedPanel(new GridBagLayout());
+        blank1 = new RoundedPanel();
         blank7 = new RoundedPanel();
         blank8 = new RoundedPanel();
         profilePalte = new RoundedPanel(1000, 1000);
@@ -59,6 +65,115 @@ public class MainGUI {
         promotionBttn = new RoundedButton("promotion", 20, 20);
         stockBttn = new RoundedButton("Stock", 20, 20);
         listBttn = new RoundedButton("Product List", 20, 20);
+        
+        //add action on button
+        logOutBttn.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.dispose();
+            }
+        });
+//        checkOutBttn;
+//        accountBttn;
+        promotionBttn.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PromotionMainUI();
+            }
+        });
+//        stockBttn;
+//        listBttn;
+        
+        //hover effect
+        logOutBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                logOutBttn.setBackground(new Color(180, 150, 150));
+                logOutBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                logOutBttn.setBackground(UIManager.getColor("Button.background"));
+                logOutBttn.setForeground(Color.black);
+            }
+            
+        });
+        
+        checkOutBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                checkOutBttn.setBackground(new Color(180, 120, 120));
+                checkOutBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                checkOutBttn.setBackground(UIManager.getColor("Button.background"));
+                checkOutBttn.setForeground(Color.black);
+            }
+            
+        });
+        
+        accountBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                accountBttn.setBackground(new Color(180, 120, 120));
+                accountBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                accountBttn.setBackground(UIManager.getColor("Button.background"));
+                accountBttn.setForeground(Color.black);
+            }
+            
+        });
+        
+        promotionBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                promotionBttn.setBackground(new Color(180, 120, 120));
+                promotionBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                promotionBttn.setBackground(UIManager.getColor("Button.background"));
+                promotionBttn.setForeground(Color.black);
+            }
+            
+        });
+        
+        stockBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                stockBttn.setBackground(new Color(180, 120, 120));
+                stockBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                stockBttn.setBackground(UIManager.getColor("Button.background"));
+                stockBttn.setForeground(Color.black);
+            }
+            
+        });
+        
+        listBttn.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                listBttn.setBackground(new Color(180, 120, 120));
+                listBttn.setForeground(new Color(230, 230, 230));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                listBttn.setBackground(UIManager.getColor("Button.background"));
+                listBttn.setForeground(Color.black);
+            }
+            
+        });
         
         //import image
         imgProfile = new ImageIcon(getClass().getResource("/Main/mainIcon/flag.png"));
@@ -452,6 +567,6 @@ public class MainGUI {
     }
     
     public static void main(String[] args) {
-        new MainGUI();
+        MainGUI mainGUI = new MainGUI();
     }
 }

@@ -25,7 +25,7 @@ public class PromotionMainUI implements PromotionListener{
     private int currentRow = 0, currentCol = 0;
     private LocalDate dateToday;
     
-    private PromotionMainUI(){
+    public PromotionMainUI(){
         promoFrame = new JFrame("Promotion Manager");
         promoPlate = new JPanel(new GridBagLayout());
         textPlate = new JPanel();
@@ -82,7 +82,7 @@ public class PromotionMainUI implements PromotionListener{
 
         promoFrame.setResizable(false);
         promoFrame.setVisible(true);
-        promoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        promoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void loadPromotionFiles() {
