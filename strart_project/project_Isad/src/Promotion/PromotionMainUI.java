@@ -2,7 +2,6 @@ package Promotion;
 
 import javax.swing.*;
 import java.awt.*;
-import decorClass.CircleButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -14,13 +13,14 @@ import java.time.LocalDate;
 import decorClass.RoundedPanel;
 import Promotion.CreatePromotion;
 import Promotion.Promotion.PromotionListener;
+import decorClass.RoundedButton;
 
 public class PromotionMainUI implements PromotionListener{
     private JFrame promoFrame;
     private JPanel promoPlate, textPlate, buttonPlate;
     private JScrollPane promoScroller;
     private JLabel promoText;
-    private CircleButton addButton, deleteButton;
+    private RoundedButton addButton, deleteButton;
     private GridBagConstraints gbc;
     private int currentRow = 0, currentCol = 0;
     private LocalDate dateToday;
@@ -32,8 +32,8 @@ public class PromotionMainUI implements PromotionListener{
         promoScroller = new JScrollPane();
         promoText = new JLabel("Promotion");
         buttonPlate = new JPanel();
-        addButton = new CircleButton();
-        deleteButton = new CircleButton("-", 1000, 1000);
+        addButton = new RoundedButton("+", 1000, 1000);
+        deleteButton = new RoundedButton("-", 1000, 1000);
         gbc = new GridBagConstraints();
         dateToday = LocalDate.now();
         
