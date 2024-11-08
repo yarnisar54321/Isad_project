@@ -8,7 +8,7 @@ public class MainGUI {
     private JFrame mainFrame;
     private JPanel mainPlate;
     private ImageIcon imgProfile, imgCheckOut, imgAccount, imgPromotion, imgStock, imgList, imgFlag;
-    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank2, blank3, blank4, blank5, blank6, blank7, blank8;
+    private RoundedPanel nameBG, soldPlate, leftPlate, rightPlate, blank1, blank7, blank8;
     private RoundedPanel leftUpper, leftUnder, rightUpper, rightUnder;
     private RoundedPanel profilePalte, checkOutPlate, accountPlate, promotionPlate, stockPlate, listPlate, flagPlate;
     private JLabel profileLabel, checkOutLabel, accountLabel, promotionLabel, stockLabel, listLabel, flagLabel;
@@ -29,12 +29,6 @@ public class MainGUI {
         //component for left panel
         leftUpper = new RoundedPanel(new GridBagLayout());
         leftUnder = new RoundedPanel(new GridBagLayout());
-        blank1 = new RoundedPanel();
-        blank2 = new RoundedPanel();
-        blank3 = new RoundedPanel();
-        blank4 = new RoundedPanel();
-        blank5 = new RoundedPanel();
-        blank6 = new RoundedPanel();
         blank7 = new RoundedPanel();
         blank8 = new RoundedPanel();
         profilePalte = new RoundedPanel(1000, 1000);
@@ -394,10 +388,6 @@ public class MainGUI {
         flagPlate.add(flagLabel, flagGB);
         flagLabel.setIcon(new ImageIcon(imgFlag.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
         
-        
-//        flagPlate.add(flagLabel);
-//        flagLabel.setIcon(imgFlag);
-        
         //set color or other attribute in frame
         nameBG.setPreferredSize(new Dimension(50, 7));
         profilePalte.setPreferredSize(new Dimension(50, 50));
@@ -422,7 +412,6 @@ public class MainGUI {
         
         nameLabel.setFont(new Font("Comic Sans MS", 1, 14));
         nameBG.setBackground(new Color(180, 130, 120));
-//        nameLabel.setForeground(new Color(230, 230, 230));
         
         scrollSold.setPreferredSize(new Dimension(200, 130));
         soldArea.setFont(new Font("Comic Sans MS", 1, 12));
